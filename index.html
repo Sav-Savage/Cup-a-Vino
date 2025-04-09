@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sav Savage® – UX Portfolio</title>
+
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #121212;
+      --text-light: #1a1a1a;
+      --text-dark: #f0f0f0;
+      --accent: #f7b731;
+    }
+
+    html, body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      scroll-behavior: smooth;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: none;
+      overflow: hidden;
+      border: none;
+    }
+
+    .logo-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand {
+      font-family: 'Euphoria Script', cursive;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 30px;
+      color: var(--accent);
+    }
+
+    .cta-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tagline {
+      background: #f0f0f0;
+      border-radius: 44px;
+      padding: 12px 24px;
+      font-size: 16.64px;
+      font-weight: 600;
+      line-height: 21.12px;
+      text-transform: capitalize;
+      color: #3C3D44;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    @keyframes arrow-drift-loop {
+  0%, 30% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-10px); /* gentle drift toward tagline */
+  }
+  40%, 70% {
+    transform: translateX(-10px); /* hold the point */
+  }
+  75% {
+    transform: translateX(0); /* return to origin */
+  }
+  100% {
+    transform: translateX(0); /* long pause before repeating */
+  }
+}
+
+.arrow-drift {
+  animation: arrow-drift-loop 8s ease-in-out infinite; /* 🔁 Slower total loop */
+}
+
+
+
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      color: #121212;
+    }
+    @keyframes ring-shake-loop {
+  0% { transform: rotate(0); }
+  1% { transform: rotate(-15deg); }
+  3% { transform: rotate(15deg); }
+  5% { transform: rotate(-10deg); }
+  7% { transform: rotate(10deg); }
+  9% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}
+
+.ring-phone {
+  animation: ring-shake-loop 4s ease-in-out infinite;
+  transform-origin: center;
+}
+.hero-video-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 80vw;
+  max-width: 1200px;
+  transform: scale(0.25); /* starting size */
+  transition: transform 0.1s linear;
+  will-change: transform;
+  border-radius: 100px; /* 👈 This gives you the rounded corner effect */
+  overflow: hidden;
+}
+
+
+    .hero {
+      text-align: center;
+      padding: 6rem 1rem;
+    }
+    .hero h1 {
+  font-size: clamp(100px, 40vw, 80px); /* scales based on viewport */
+  line-height: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #F0F0F0;
+  font-family: 'SF Pro', inter;
+  text-align: center;
+}
+    .hero h2 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact input, .contact textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: inherit;
+    }
+
+    .contact button {
+      padding: 0.8rem 1.5rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #121212;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding-bottom: 3rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Updated Custom Navbar -->
+  <nav class="flex justify-between items-center px-6 py-4 max-w-screen-xl mx-auto">
+    <!-- Left: Logo -->
+    <div class="logo-wrapper flex items-center gap-3">
+      <div class="logo-img w-[60px] h-[60px] rounded-full overflow-hidden">
+        <img
+          src="./images/Origin Image → Picture → Sav..png"
+          alt="Origin Sav."
+          class="w-full h-full object-cover block"
+        />
+      </div>
+      <div class="brand text-[#F7B731] text-[40px] leading-[30px] font-normal" style="font-family: 'Euphoria Script', cursive;">
+        Sav.
+      </div>
+    </div>
+  
+    <!-- Right: Tagline and Buttons -->
+    <div class="cta-wrap flex items-center gap-4">
+      <div class="tagline bg-[#F0F0F0] px-6 py-2 rounded-full text-[#3C3D44] text-[16.64px] font-[Inter] font-semibold capitalize leading-[21.12px]">
+        No Spam. Just Fire.
+      </div>
+  
+      <button class="icon-btn w-11 h-11 p-2 bg-[#F0F0F0] rounded-full flex justify-center items-center arrow-drift" aria-label="Back Arrow">
+        <img src="./vectors/arrow-left.svg" alt="Back Arrow" class="w-[20.25px] h-[20.25px]" style="transform: rotate(90deg);" />
+      </button>
+      
+  
+      <button class="icon-btn w-11 h-11 p-2 bg-gray-100 rounded-full flex justify-center items-center" aria-label="Call Button">
+        <img src="./vectors/phone.svg" alt="Phone Icon"
+             class="w-full h-full object-contain bg-[#121212] ring-phone" />
+      </button>
+      
+    </div>
+  </nav>
+
+  <!--Hero-->
+  <section class="hero">
+<!-- ✅ Responsive, Animated, Centered HERO Section with Cool Effects -->
+<style>
+  @font-face {
+    font-family: 'SF Pro';
+    src: url('/fonts/SF-Pro-Display-Regular.woff2') format('woff2'),
+         url('/fonts/SF-Pro-Display-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .sf-pro {
+    font-family: 'SF Pro', sans-serif;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    animation: fadeUp 1.2s ease-out forwards;
+  }
+
+  .fade-up:nth-of-type(1) { animation-delay: 0.3s; }
+  .fade-up:nth-of-type(2) { animation-delay: 0.6s; }
+  .fade-up:nth-of-type(3) { animation-delay: 0.9s; }
+  .fade-up:nth-of-type(4) { animation-delay: 1.2s; }
+  .fade-up:nth-of-type(5) { animation-delay: 1.5s; }
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 42px;
+      line-height: 48px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+</style>
+
+<section class="min-h-screen w-full bg-[#121212] sf-pro">
+  <div class="flex flex-col items-center justify-center text-center h-full max-w-screen-xl mx-auto px-6">
+    <h1 class="hero-title text-[#F0F0F0] text-[200px] leading-[180px] font-extrabold uppercase fade-up">
+      This Isn’t an ‘About Me’
+    </h1>
+
+    <h1 class="hero-title text-[#F0F0F0] text-[200px] leading-[180px] font-extrabold uppercase fade-up">
+      It’s a Origin Story.
+    </h1>
+
+    <p class="hero-sub text-[#F0F0F0] text-[19.2px] leading-[23px] font-medium uppercase mt-6 fade-up">
+      Part designer. Part developer.
+    </p>
+
+    <p class="hero-sub text-[#F0F0F0] text-[19.2px] leading-[23px] font-medium uppercase fade-up">
+      Fully that girl!
+    </p>
+    <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
+      <button
+        aria-label="Scroll to video"
+        style="
+          width: 64px;
+          height: 64px;
+          border-radius: 9999px;
+          background: #F0F0F0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+        "
+        class="fade-up animate-bounce"
+      >
+        <img
+          src="./vectors/arrow-left.svg"
+          alt="Down Arrow"
+          style="width: 20px; height: 20px; transform: rotate(0deg); display: block;"
+        />
+      </button>
+    </div>
+    
+
+  <!-- Hero Section -->
+  <section class="hero-video-wrapper">
+    <video
+      id="heroVideo"
+      src="./videos/SavageWalk3.mov"
+      autoplay
+      muted
+      loop
+      playsinline
+      class="hero-video"
+    ></video>
+  </section>
+  
+  
+  
+
+  <!-- About -->
+  <section>
+    <h3>About Me</h3>
+    <p>I'm Savannah, a UX designer and visionary founder crafting accessible, human-centered digital experiences. I design with purpose, build with empathy, and believe in ethical, inclusive technology.</p>
+  </section>
+
+  <!-- Work -->
+  <section>
+    <h3>Selected Work</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Global Accessibility App</h4>
+        <p>A mobile-first travel experience focused on language access, localization, and inclusive design.</p>
+      </div>
+      <div class="card">
+        <h4>AI Travel Curator</h4>
+        <p>AI-powered UX that personalizes trips using intent-based logic and cultural awareness.</p>
+      </div>
+      <div class="card">
+        <h4>Voice-Enabled Restaurant UX</h4>
+        <p>Voice & motion-responsive dining system designed for dignity, mobility, and interaction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact">
+    <h3>Let's Connect</h3>
+    <form>
+      <input type="text" placeholder="Your Name" aria-label="Name">
+      <input type="email" placeholder="Email Address" aria-label="Email">
+      <textarea placeholder="Your Message" aria-label="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Sav Savage® · Designed for humanity. Built for impact.
+  </footer>
+
+  <!-- Theme Toggle -->
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      document.documentElement.classList.toggle('light');
+    }
+
+   
+  const heroVideo = document.getElementById('heroVideo');
+
+  window.addEventListener('scroll', () => {
+    const rect = heroVideo.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Calculate how much the section is scrolled into view (0 to 1)
+    const scrollProgress = 1 - Math.max(0, Math.min(rect.top / windowHeight, 1));
+
+    // Scale from 0.25 to 0.75
+    const minScale = 0.25;
+    const maxScale = 0.75;
+    const scale = minScale + (maxScale - minScale) * scrollProgress;
+
+    heroVideo.style.transform = `scale(${scale})`;
+  });
+</script>
+
+</body>
+</html>
